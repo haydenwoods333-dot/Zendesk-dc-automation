@@ -50,8 +50,6 @@
 
 {% if debug_mode == "enabled" %}
 
-claim status = {{claim.claim_status}}
-
 execution_state = {{ execution_state }}
 audience = {{ audience }}
 contact_reason = {{ contact_reason }}
@@ -81,41 +79,6 @@ missing_claim_dos = {{ missing_claim_dos }}
 
 status = {{ status }}
 display_status = {{ display_status }}
-debug_mode = {{ debug_mode }}
 macro_comment = {{ macro_comment }}
 
-{% comment %} Debug Output for Each Assigned Variable with Actual Ticket Field Keys {% endcomment %}
-
-execution_state = {{ execution_state }}
-
-audience = {{ ticket.ticket_field_46911473232923 }}
-contact_reason = {{ ticket.ticket_field_46911442746779 }}
-group = {{ ticket.ticket_fields_46911520501915.custom_fields }}
-member = {{ ticket.ticket_fields_46911443315867.custom_fields }}
-claim = {{ ticket.ticket_fields_46911507367195.custom_fields }}
-clm_batch = {{ ticket.ticket_fields_46902798796187.custom_fields }}
-
-member_dob = {{ member_dob }}
-member_enroll_date = {{ member_enroll_date }}
-member_termed_date = {{ member_termed_date }}
-
-claim_received_date = {{ claim_received_date }}
-claim_processed_date = {{ claim_processed_date }}
-claim_dos = {{ claim_dos }}
-
-clm_batch_received_date = {{ clm_batch_received_date }}
-clm_batch_dos = {{ clm_batch_dos }}
-
-hippa_fail = {{ ticket.ticket_field_46911473844123 }}
-payment_released = {{ ticket.ticket_field_46911520904347 }}
-payment_released_date = {{ payment_released_date }}
-payment_cleared = {{ ticket.ticket_field_46911458556443 }}
-payment_cleared_date = {{ payment_cleared_date }}
-missing_claim_billed_amount = {{ ticket.ticket_field_46911443267867 }}
-missing_claim_dos = {{ ticket.ticket_field_46911520953883 }}
-
-status = {{ status }}
-display_status = {{ display_status }}
-debug_mode = {{ debug_mode }}
-macro_comment = {{ macro_comment }}
 {% endif %}
