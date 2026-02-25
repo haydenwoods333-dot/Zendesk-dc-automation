@@ -1,0 +1,6 @@
+{% comment %} Accepts reprocessing based on ROE status {% endcomment %}
+Reprocessed:
+
+{% if group.status == "Termed" %}
+Text about being unable to consider reprocessing.
+{% endif %}

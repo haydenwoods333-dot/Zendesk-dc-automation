@@ -1,0 +1,60 @@
+{% comment %} Setting comment type {% endcomment %}
+{% if ticket.tags contains "external" %}
+  {% assign macro_comment = "external" %}
+{% else %}
+  {% assign macro_comment = "internal" %}
+{% endif %}
+
+{% comment %}==============================================Varible assignements for all DCs {% endcomment %}
+{% comment %}==============================================Object keys {% endcomment %}
+{% assign audience = ticket.ticket_field_xxxxxxxxxxxxxx %}
+{% assign contact_reason = ticket.ticket_field_xxxxxxxxxxxxxx %}
+{% assign group = ticket.ticket_fields_xxxxxxxxxxxxxx.custom_fields %}
+{% assign member = ticket.ticket_fields_xxxxxxxxxxxxxx.custom_fields | default: "missing" %}
+{% assign claim = ticket.ticket_fields_xxxxxxxxxxxxxx.custom_fields %}
+{% assign clm_batch = ticket.ticket_fields_xxxxxxxxxxxxxx.custom_fields %}
+
+{% comment %}==============================================Normalize object dates to mm/dd/yy format {% endcomment %}
+{% comment %}==============================================member object====== {% endcomment %}
+{% assign member_dob = member.date_of_birth | date: "%m/%d/%y" %}
+{% assign member_enroll_date = member.enroll_date | date: "%m/%d/%y" %}
+{% assign member_termed_date = member.disenroll_date | date: "%m/%d/%y" %}
+
+{% comment %}=============================================Claim object=========== {% endcomment %}
+{% assign claim_received_date = claim.received_date | date: "%m/%d/%y" %}
+{% assign claim_processed_date = claim.processed_date | date: "%m/%d/%y" %}
+{% assign claim_dos = claim.date_of_service | date: "%m/%d/%y" %}
+{% assign claim_dob = claim.birth_date | date: "%m/%d/%y" %}
+
+{% comment %}=============================================clm_batch (unprocessed claims) object {% endcomment %}
+{% assign clm_batch_received_date = clm_batch.received_date | date: "%m/%d/%y" %}
+{% assign clm_batch_dos = clm_batch.dos | date: "%m/%d/%y" %}
+
+{% comment %}=============================================One off keys {% endcomment %}
+{% assign hipaa_fail = ticket.ticket_field_xxxxxxxxxxxxxx %}
+{% assign payment_released = ticket.ticket_field_xxxxxxxxxxxxxx %}
+{% assign payment_released_date = ticket.ticket_field_xxxxxxxxxxxxxx | date: "%m/%d/%y" %}
+{% assign payment_cleared = ticket.ticket_field_xxxxxxxxxxxxxx %}
+{% assign payment_cleared_date = ticket.ticket_field_xxxxxxxxxxxxxx | date: "%m/%d/%y" %}
+{% assign missing_claim_billed_amount = ticket.ticket_field_xxxxxxxxxxxxxx %}
+{% assign missing_claim_dos = ticket.ticket_field_xxxxxxxxxxxxxx | date: "%m/%d/%y" %}
+{% assign reimbursment_docs = ticket.ticket_field %}
+
+{% comment %}=============================================Timers {% endcomment %}
+{% assign claim_business_day_limit = x %}
+
+{% comment %}=============================================Normalize claim status, hiding "Paid" from end user {% endcomment %}
+{% assign status = claim.claim_status | default: "missing" %}
+
+{% if status == "paid" %}
+  {% assign display_status = "processed" %}
+{% else %}
+  {% assign display_status = status %}
+{% endif %}
+
+{% comment %} debug mode {% endcomment %}
+{% assign debug_mode = "enabled" %}
+
+{% assign start_date = 'now' | date: '%s' %}
+{% assign business_days = 0 %}
+{% assign current_date = start_date %}

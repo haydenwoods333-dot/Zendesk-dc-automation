@@ -1,0 +1,29 @@
+{% comment %} Renders a claim response based on status. {% endcomment %}
+{{dc.block_uni_portal_info | strip_newlines}}
+{{dc.block_uni_registration_code | strip_newlines}}
+
+{{dc.block_snapshot_opener}}
+{% case status %}
+
+  {% when "missing" %}
+    {{dc.block_snapshot_member}}
+    {{dc.block_snapshot_claim_missing}}
+    {{dc.block.group_claim_address}}
+
+  {% else %}
+    {{dc.block_snapshot_claim}}
+    {{dc.block_claim_financial_breakdown}}
+
+    {% if claim.status == "paid" or claim.status == "processed" or claim.status == "partial denial" %}
+      {{dc.block_claim_payment_details}}
+    {% endif %}
+
+    {% if claim.status == "denied" or claim.status == "parital_denial" %}
+      {{dc.block_group_reprocessing_info}}
+    {% endif %}
+
+{% endcase %}
+
+{% if debug_mode == "enabled" %}
+-Sub Controller: Claim Status-
+{% endif %}

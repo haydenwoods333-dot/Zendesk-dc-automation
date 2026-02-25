@@ -1,0 +1,19 @@
+{% assign start_date = 'now' | date: '%s' %}
+{% assign business_days = 0 %}
+{% assign current_date = start_date %}
+
+{% for i in (1..x) %}
+  {% if business_days >= claim_business_day_limit %}
+    {% break %}
+  {% endif %}
+
+  {% assign day_of_week = current_date | date: '%w' %}
+
+  {% unless day_of_week == '0' or day_of_week == '6' %}
+    {% assign business_days = business_days | plus: 1 %}
+  {% endunless %}
+
+  {% assign current_date = current_date | plus: 86400 %}
+{% endfor %}
+
+{{ current_date | date: '%Y-%m-%d' }}

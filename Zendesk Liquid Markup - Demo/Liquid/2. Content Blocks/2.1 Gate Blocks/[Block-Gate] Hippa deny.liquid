@@ -1,0 +1,6 @@
+{% comment %} Triggered by agent selecting "Not Hippa Compliant" on form. Is a security override for all blocks except Greeting {% endcomment %}
+{% if macro_comment == "external" %}
+Text about requesting more information to verify accounts
+{% else %}
+Flagged for Hipaa fail
+{% endif %}

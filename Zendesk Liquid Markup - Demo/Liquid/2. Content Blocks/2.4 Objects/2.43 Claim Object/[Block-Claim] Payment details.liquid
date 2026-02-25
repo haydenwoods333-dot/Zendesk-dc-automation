@@ -1,0 +1,13 @@
+{% comment %} Determined by agent input until Echo Data is available to export {% endcomment%}
+{% if payment released == "1" %} 	
+Payment Timeline:
+	- Payment Release Date: {{payment_released_date}}
+	- Payment Status: {% if payment_cleared == "1" %} Cleared
+	- Payment Cleared Date: {{payment_cleared_date}}{% else %}Not Cleared{% endif %}
+{% else %}
+Payment Timeline:
+- Not Released{% endif %}
+
+Payment Details:
+Payments are typically released within x business days of the processed date and may require additional time for delivery. 
+If payment has not been recived within x business days, please respond to this email and an agent will follow up with you.

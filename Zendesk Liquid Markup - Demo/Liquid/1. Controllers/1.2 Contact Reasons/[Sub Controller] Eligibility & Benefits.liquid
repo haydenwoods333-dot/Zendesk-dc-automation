@@ -1,0 +1,13 @@
+{% comment %} Renders a response for eligibility and benefits {% endcomment %}
+{{dc.block_uni_portal_info | strip_newlines}}
+{{dc.block_uni_registration_code | strip_newlines}}
+
+{{dc.block_snapshot_opener}}
+{{dc.block_snapshot_member}}
+
+{{dc.block_member_member_eligibility}}
+{{dc.block_member_benefits_accums}}
+
+{% if debug_mode == "enabled" %}
+-Sub Controller: Eligibility & Benefits-
+{% endif %}
