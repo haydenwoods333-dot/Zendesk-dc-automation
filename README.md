@@ -4,7 +4,7 @@
 MODULAR MACRO FRAMEWORK – ZENDESK DYNAMIC CONTENT
 ========================================================
 Execution Order:
-1. Master Controller
+1. Main Controller
 2. Logic Gates / Execution State
 3. Subcontrollers (per Contact Reason)
 4. Content Blocks (Dynamic Content)
